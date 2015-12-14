@@ -8,9 +8,6 @@
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
-# TODO: Make this script look through subfolders for map documents.
-# Currently this script can only find map documents from the selected workspace (excluding subfolders).
-
 # Import modules
 import arcpy, os, os.path
 from arcpy import env
@@ -22,9 +19,10 @@ arcpy.env.workspace = Workspace
 # Verify the user input is a file location using a try/except
 try:
     if os.path.exists(Workspace):
-        print 'The following path was selected: ' + Workspace + '.' 
-        print 'The script will now set the relative path to the ArcMap projects in the directory.'
-# If the user input is incorrect, or the user doesn't have sufficient privileges print a statement and quit the script.
+        print '*****************************************************'
+        print 'The following path was selected:'
+        print Workspace
+# If the user input is incorrect, or the user doesn't have sufficient privledges print a statement and quit the script.
     else:
         print 'An invalid directory was entered, please enter a valid directory to execute.'
         print 'The script has unsuccessfully executed, and will close.'
@@ -33,14 +31,26 @@ try:
 except Exception as e:
     print('An error has occurred.', e)
 
+###################################
 # List the map documents in folder
-mxdList = arcpy.ListFiles('*.mxd')
+###################################
+# Set the mxdList array for the map document list.
+mxdList = []
+# Loop through all files selected and append them to the mxdList array.
+for root, dirs, files in os.walk(Workspace):
+    for f in files:
+        if f.endswith('.mxd'):
+            #print os.path.join(root, f) #Use for testing
+            mxdList.append(os.path.join(root, f))
 
-#Set count = 0 before the for loop
+# Set the count to 0 before the 'for' loop
 count = 0
 
 # Set a relative path setting for each MXD in list.
+print '*****************************************************'
+print 'The following projects will be set to relative paths:'
 for file in mxdList:
+    print file
     # Set the map document to change the relative path
     filePath = os.path.join(Workspace, file)
     mxd = arcpy.mapping.MapDocument(filePath)
@@ -52,4 +62,5 @@ for file in mxdList:
     count = count + 1
 
 # Print a success message to the user
+print '*****************************************************'
 print 'The script was successfully executed ' + str(count) + ' times.'
