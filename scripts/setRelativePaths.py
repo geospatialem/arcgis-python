@@ -8,6 +8,9 @@
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
+# TODO: Make this script look through subfolders for map documents.
+# Currently this script can only find map documents from the selected workspace (excluding subfolders).
+
 # Import modules
 import arcpy, os, os.path
 from arcpy import env
