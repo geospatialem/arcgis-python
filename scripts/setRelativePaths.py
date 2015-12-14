@@ -21,7 +21,7 @@ try:
     if os.path.exists(Workspace):
         print 'The following path was selected: ' + Workspace + '.' 
         print 'The script will now set the relative path to the ArcMap projects in the directory.'
-# If the user input is incorrect, or the user doesn't have sufficient privledges print a statement and quit the script.
+# If the user input is incorrect, or the user doesn't have sufficient privileges print a statement and quit the script.
     else:
         print 'An invalid directory was entered, please enter a valid directory to execute.'
         print 'The script has unsuccessfully executed, and will close.'
