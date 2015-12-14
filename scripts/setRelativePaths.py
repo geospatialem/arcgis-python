@@ -4,7 +4,7 @@
 # project(s), or .mxd files, within a user-defined file directory.
 # Author: Kitty Hurley
 # Original date: 2015-12-12
-# Last modified date: 2015-12-12
+# Last modified date: 2015-12-14
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
@@ -13,13 +13,14 @@ import arcpy, os, os.path
 from arcpy import env
 
 # Allow the user to set the workspace to search for the map documents
-Workspace = raw_input('Enter a directory location (e.g. G:\EH Tracking\GIS\GIS_Projects): ')
+Workspace = raw_input('Enter a directory location (e.g. G:/EH Tracking/GIS/GIS_Projects): ')
 arcpy.env.workspace = Workspace
 
 # Verify the user input is a file location using a try/except
 try:
     if os.path.exists(Workspace):
-        print 'The following path was selected: ' + Workspace + '. The script will now set the relative path to the ArcMap projects in the directory.'
+        print 'The following path was selected: ' + Workspace + '.' 
+        print 'The script will now set the relative path to the ArcMap projects in the directory.'
 # If the user input is incorrect, or the user doesn't have sufficient privledges print a statement and quit the script.
     else:
         print 'An invalid directory was entered, please enter a valid directory to execute.'
@@ -32,6 +33,9 @@ except Exception as e:
 # List the map documents in folder
 mxdList = arcpy.ListFiles('*.mxd')
 
+#Set count = 0 before the for loop
+count = 0
+
 # Set a relative path setting for each MXD in list.
 for file in mxdList:
     # Set the map document to change the relative path
@@ -41,4 +45,8 @@ for file in mxdList:
     mxd.relativePaths = True
     # Save the map doucment changes
     mxd.save()
-    print 'The script has successfully executed.'
+    # Change the count after executing the loop
+    count = count + 1
+
+# Print a success message to the user
+print 'The script was successfully executed ' + str(count) + ' times.'
