@@ -19,11 +19,11 @@ arcpy.env.workspace = Workspace
 ###################################
 # Verify the user input is correct
 ###################################
-# Allow the user to verify their selected path is correct by selecting 'y', or 'n'
+# Allow the user to verify their selected path is correct by selecting 'y', or 'n' (and ensure the input is set to lowercase).
 userVerified = raw_input('Is ' + Workspace + ' the correct directory? [y/n]: ').lower()
 # Loop used to verify if the user selected the current path.
 while True:
-    # If the user accepts, terminate the current loop and continue executing the script by resume execution at the next statement.
+    # If the user accepts, terminate the current loop and continue executing the script by resuming execution at the next statement.
     if userVerified == 'y':
         break
     # Else exit the script
