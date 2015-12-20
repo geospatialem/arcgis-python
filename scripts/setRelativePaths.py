@@ -4,7 +4,7 @@
 # project(s), or .mxd files, within a user-defined file directory.
 # Author: Kitty Hurley
 # Original date: 2015-12-12
-# Last modified date: 2015-12-14
+# Last modified date: 2015-12-20
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
@@ -15,6 +15,22 @@ from arcpy import env
 # Allow the user to set the workspace to search for the map documents
 Workspace = raw_input('Enter a directory location (e.g. G:/EH Tracking/GIS/GIS_Projects): ')
 arcpy.env.workspace = Workspace
+
+###################################
+# Verify the user input is correct
+###################################
+# Allow the user to verify their selected path is correct by selecting 'y', or 'n'
+userVerified = raw_input('Is ' + Workspace + ' the correct directory? [y/n]: ').lower()
+# Loop used to verify if the user selected the current path.
+while True:
+    # If the user accepts, terminate the current loop and continue executing the script by resume execution at the next statement.
+    if userVerified == 'y':
+        break
+    # Else exit the script
+    else:
+        print 'The script will now quit.'
+        print 'Please re-run the script and enter in the correct directory location.'
+        quit()
 
 # Verify the user input is a file location using a try/except
 try:
