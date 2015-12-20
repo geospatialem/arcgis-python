@@ -28,8 +28,8 @@ while True:
         break
     # Else exit the script
     else:
-        print 'The script will now quit.'
         print 'Please re-run the script and enter in the correct directory location.'
+        print 'The script will now quit.'
         quit()
 
 # Verify the user input is a file location using a try/except
