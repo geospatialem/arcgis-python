@@ -4,7 +4,7 @@
 # project(s), or .mxd files, within a user-defined file directory.
 # Author: Kitty Hurley
 # Original date: 2015-12-12
-# Last modified date: 2015-12-20
+# Last modified date: 2015-12-21
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
@@ -77,6 +77,15 @@ for file in mxdList:
     # Change the count after executing the loop
     count = count + 1
 
-# Print a success message to the user
-print '*****************************************************'
-print 'The script was successfully executed ' + str(count) + ' times.'
+# Print a message to the user. 
+# If the count remains 0, print a message that there are no MXDs are in the directory location. 
+# Else if the count > 0, print a success message with the number of times the script was executed.
+if count is 0:
+	print '*****************************************************'
+	print 'There are no MXDs in the directory location.'
+	print 'The script has finished execution.'
+	quit()
+else:
+	# Print a success message to the user
+	print '*****************************************************'
+	print 'The script was successfully executed ' + str(count) + ' times.'
