@@ -4,7 +4,7 @@
 # project(s), or .mxd files, within a user-defined file directory.
 # Author: Kitty Hurley
 # Original date: 2015-12-12
-# Last modified date: 2015-12-21
+# Last modified date: 2015-12-22
 # Resource: http://support.esri.com/fr/knowledgebase/techarticles/detail/40656
 # ---------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ import arcpy, os, os.path
 from arcpy import env
 
 # Allow the user to set the workspace to search for the map documents
-Workspace = raw_input('Enter a directory location (e.g. G:/EH Tracking/GIS/GIS_Projects): ')
+Workspace = raw_input('Enter a directory location (e.g. c:/users/geogeek/gis): ')
 arcpy.env.workspace = Workspace
 
 ###################################
@@ -77,8 +77,8 @@ for file in mxdList:
     # Change the count after executing the loop
     count = count + 1
 
-# Print a message to the user. 
-# If the count remains 0, print a message that there are no MXDs are in the directory location. 
+# Print a message to the user.
+# If the count remains 0, print a message that there are no MXDs are in the directory location.
 # Else if the count > 0, print a success message with the number of times the script was executed.
 if count is 0:
 	print '*****************************************************'
